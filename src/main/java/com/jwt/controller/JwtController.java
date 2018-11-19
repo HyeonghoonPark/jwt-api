@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jwt.service.JwtService;
+import com.jwt.util.NoLoginCheck;
 
 @Controller
 public class JwtController {
 
 	@Autowired JwtService jwtService;
 
+	@NoLoginCheck
 	@RequestMapping(value = "/SignUp", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> SignUp(@RequestBody HashMap<String, Object> param) {
 
@@ -31,6 +33,7 @@ public class JwtController {
 		
 	}
 	
+	@NoLoginCheck
 	@RequestMapping(value ="/SignIn", method = RequestMethod.POST)
 	public @ResponseBody HashMap<String, Object> SignIn(@RequestBody HashMap<String, Object>param, 
 			HttpServletResponse response){
@@ -41,6 +44,13 @@ public class JwtController {
 		
 		return resultMap;
 		
+	}
+	
+	@RequestMapping(value= "/main", method = RequestMethod.GET)
+	public void MainFrame() {
+		
+		System.out.println("컨트롤러");
+	
 	}
 	
 }
