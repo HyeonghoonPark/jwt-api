@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jwt.service.JwtService;
@@ -47,10 +48,16 @@ public class JwtController {
 	}
 	
 	@RequestMapping(value= "/main", method = RequestMethod.GET)
-	public void MainFrame() {
+	public @ResponseBody HashMap<String, Object> MainFrame(@RequestParam("no") String no) {
+		
+		HashMap resultMap = new HashMap<String, Object>();
+		
+		resultMap.put("no", no);
 		
 		System.out.println("컨트롤러");
 	
+		return resultMap;
+		
 	}
 	
 }

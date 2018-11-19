@@ -20,8 +20,12 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 public class JwtTokenUtil {
 
-	private static final String SALT =  "intranetsecret";	// 로그인 토큰의 암호화 키. 외부 노출되지 않도록 주의.
+	public static final String SALT =  "intranetsecret";	// 로그인 토큰의 암호화 키. 외부 노출되지 않도록 주의.
 	private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
+	public static final int TOKEN_EXP_TIME = 24 * 60 * 60 * 1000;	// 로그인 토큰 유효 시간(ms 단위)
+	public static final int ROLE_USER = 1;	// 1: 일반회원, 2: 관리자
+	public static final int ROLE_ADMIN = 2;
+	public static final String JWT_ROLE_KEYWORD = "role";
 	
 	public String create(Date exp, HashMap<String, Object> customClaimSet){ 
 		
